@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float speed;
+
+    public float maxX = 2f;
+
+    float movementHorizontal;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,6 +17,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        //controles normais via teclado
+        movementHorizontal = Input.GetAxis("Horizontal");
+        if((movementHorizontal>0 && transform.position.x<maxX) || (movementHorizontal<0 && transform.position.x>-maxX))
+        {
+            transform.position += Vector3.right * movementHorizontal * speed * Time.deltaTime;
+        }
     }
 }
